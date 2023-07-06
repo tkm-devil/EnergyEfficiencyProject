@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Energy Efficiency Form</h1>
+    <form method="POST" action="{{ url_for('prediction') }}">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            {{ form.relative_compactness.label }} {{ form.relative_compactness(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.surface_area.label }} {{ form.surface_area(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.wall_area.label }} {{ form.wall_area(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.roof_area.label }} {{ form.roof_area(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.overall_height.label }} {{ form.overall_height(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.orientation.label }} {{ form.orientation(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.glazing_area.label }} {{ form.glazing_area(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.glazing_area_distribution.label }} {{ form.glazing_area_distribution(class="form-control") }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Prediction Results</h1>
+    <h3>Heating Load: {{ heating_load }}</h3>
+    <h3>Cooling Load: {{ cooling_load }}</h3>
+    <a class="btn btn-primary" href="/form">Back to Form</a>
+{% endblock %}
