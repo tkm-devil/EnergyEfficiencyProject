@@ -6,8 +6,7 @@ import os
 import pickle
 import pandas as pd
 
-
-# load the preprocessor and model
+# Load the preprocessor and models
 preprocessor_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'preprocessor.pkl')
 with open(preprocessor_path, 'rb') as f:
     preprocessor = pickle.load(f)
@@ -56,22 +55,29 @@ def form():
             'glazing_area': form.glazing_area.data,
             'glazing_area_distribution': form.glazing_area_distribution.data
         }
-        df = pd.DataFrame([data])
-        df = preprocessor.transform(df)
-        heating_load = heating_load_model.predict(df)[0]
-        cooling_load = cooling_load_model.predict(df)[0]
-        return redirect(url_for('prediction', heating_load=heating_load, cooling_load=cooling_load))
+        return redirect(url_for('prediction', **data))
     return render_template('form.html', form=form)
 
 # Energy Efficiency Prediction
-@app.route('/prediction', methods=['GET', 'POST'])
+@app.route('/prediction', methods=['GET'])
 def prediction():
-    if request.method == 'POST':
-        heating_load = request.form.get('heating_load')
-        cooling_load = request.form.get('cooling_load')
-    else:
-        heating_load = request.args.get('heating_load')
-        cooling_load = request.args.get('cooling_load')
+    data = {
+        'Relative_Compactness': float(request.args.get('relative_compactness')),
+        'Surface_Area': float(request.args.get('surface_area')),
+        'Wall_Area': float(request.args.get('wall_area')),
+        'Roof_Area': float(request.args.get('roof_area')),
+        'Overall_Height': float(request.args.get('overall_height')),
+        'Orientation': int(request.args.get('orientation')),
+        'Glazing_Area': float(request.args.get('glazing_area')),
+        'Glazing_Area_Distribution': int(request.args.get('glazing_area_distribution'))
+    }
+    df = pd.DataFrame([data])
+    df_preprocessed = preprocessor.transform(df)
+    df_preprocessed = pd.DataFrame(df_preprocessed, columns=df.columns)
+    heating_load = heating_load_model.predict(df_preprocessed)[0]
+    cooling_load = cooling_load_model.predict(df_preprocessed)[0]
+    heating_load = round(heating_load, 2)
+    cooling_load = round(cooling_load, 2)
     return render_template('prediction.html', heating_load=heating_load, cooling_load=cooling_load)
 
 if __name__ == '__main__':
