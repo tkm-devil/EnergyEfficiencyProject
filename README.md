@@ -10,6 +10,22 @@ The project includes Jupyter notebooks for data exploration, model training, and
 
 In summary, the Energy Efficiency Prediction project combines machine learning techniques, Flask web integration, and a well-structured codebase to deliver a practical solution for estimating the heating load and cooling load of buildings. It offers an intuitive user interface and facilitates accurate predictions to assist in energy-efficient building design and optimization.
 
+## Workflow
+
+The project follows a typical workflow consisting of the following steps:
+
+1. Data Collection - The data was collected from UCI Machine Learning Repository. For more information please visit https://archive.ics.uci.edu/dataset/242/energy+efficiency.
+
+2. Data Preprocessing - Use the provided Jupyter notebooks to preprocess the data. This step includes cleaning the data, handling missing values, feature engineering, and scaling the features.
+
+3. Model Training - Train the prediction models using the preprocessed data. The project includes pre-trained models, but you can also retrain the models using your own datasets if desired. Refer to the provided Jupyter notebooks for details on model training.
+
+4. Web Application Setup: Install the required dependencies and set up the Flask web application. The project includes the necessary files and folder structure for running the web application locally.
+
+5. Run the Web Application: Start the Flask server and access the application through a web browser. The application will present a form where users can input the building characteristics. Upon form submission, the backend will process the input, apply the prediction model, and display the estimated heating load and cooling load values.
+
+6. Deployment: Once you're satisfied with the local testing, you can deploy the web application to a production server. Refer to the Flask documentation for instructions on deploying Flask applications.
+
 ## Getting Started
 
 These instructions will give you a copy of the project on your local machine for testing and development purposes.
@@ -32,7 +48,7 @@ git clone https://github.com/tkm-devil/EnergyEfficiencyProject.git
 cd EnergyEfficiencyProject
 ```
 
-2. Create a Virtual Environment and Activate it:
+2. Create a virtual environment and activate it:
 
 ```
 python -m venv env
@@ -49,14 +65,21 @@ pip install -r requirements.txt
 4. Start the Flask application:
 
 ```
-python application.py run
+python application.py 
 ```
 
 5. Access the application in your web browser at http://127.0.0.1:5000
 
+## Usage
+
+1. Open your web browser and navigate to http://127.0.0.1:5000
+2. Fill in the form with the relevant architectural parameters of the building.
+3. Click the "Submit" button.
+4. The application will process the input and display the predicted heating load and cooling load values.
+
 ## Deployment 
 
-I will update this later
+This section can be updated with instructions on how to deploy the application on a production server.
 
 ## Built with
 
@@ -71,15 +94,7 @@ I will update this later
 
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement". Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+Contributions are welcome! If you have any ideas or improvements, please open an issue or submit a pull request.
 
 ## Authors
 
