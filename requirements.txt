@@ -1,0 +1,8 @@
+numpy==1.23.3
+pandas==1.4.4
+matplotlib==3.5.3
+seaborn==0.12.0
+scikit-learn==1.2.2
+flask==2.2.2
+flask_wtf==1.1.1
+wtforms==3.0.1
