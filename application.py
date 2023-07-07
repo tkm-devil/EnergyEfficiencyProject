@@ -5,19 +5,20 @@ from wtforms.validators import DataRequired, NumberRange
 import os
 import pickle
 import pandas as pd
+from src.pipelines.prediction_pipeline import PredictionPipeline
 
-# Load the preprocessor and models
-preprocessor_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'preprocessor.pkl')
-with open(preprocessor_path, 'rb') as f:
-    preprocessor = pickle.load(f)
+# # Load the preprocessor and models
+# preprocessor_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'preprocessor.pkl')
+# with open(preprocessor_path, 'rb') as f:
+#     preprocessor = pickle.load(f)
 
-heating_load_model_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'heating_load_model.pkl')
-with open(heating_load_model_path, 'rb') as f:
-    heating_load_model = pickle.load(f)
+# heating_load_model_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'heating_load_model.pkl')
+# with open(heating_load_model_path, 'rb') as f:
+#     heating_load_model = pickle.load(f)
 
-cooling_load_model_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'cooling_load_model.pkl')
-with open(cooling_load_model_path, 'rb') as f:
-    cooling_load_model = pickle.load(f)
+# cooling_load_model_path = os.path.join(os.getcwd(), 'artifacts', 'models', 'cooling_load_model.pkl')
+# with open(cooling_load_model_path, 'rb') as f:
+#     cooling_load_model = pickle.load(f)
 
 # Initialize the app
 application = Flask(__name__)
@@ -73,10 +74,7 @@ def prediction():
         'Glazing_Area_Distribution': int(request.args.get('glazing_area_distribution'))
     }
     df = pd.DataFrame([data])
-    df_preprocessed = preprocessor.transform(df)
-    df_preprocessed = pd.DataFrame(df_preprocessed, columns=df.columns)
-    heating_load = heating_load_model.predict(df_preprocessed)[0]
-    cooling_load = cooling_load_model.predict(df_preprocessed)[0]
+    heating_load, cooling_load = PredictionPipeline().predict_results(df)
     heating_load = round(heating_load, 2)
     cooling_load = round(cooling_load, 2)
     return render_template('prediction.html', heating_load=heating_load, cooling_load=cooling_load)

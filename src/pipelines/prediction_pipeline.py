@@ -61,7 +61,7 @@ class PredictionPipeline:
     def predict_heating_load(self, df, heating_load_model):
         try:
             logging.info("Predicting heating load")
-            return heating_load_model.predict(df)
+            return heating_load_model.predict(df)[0]
         except Exception as e:
             logging.error("Error occurred while predicting heating load")
             raise CustomException("Error occurred while predicting heating load", e)
@@ -70,7 +70,7 @@ class PredictionPipeline:
     def predict_cooling_load(self, df, cooling_load_model):
         try:
             logging.info("Predicting cooling load")
-            return cooling_load_model.predict(df)
+            return cooling_load_model.predict(df)[0]
         except Exception as e:
             logging.error("Error occurred while predicting cooling load")
             raise CustomException("Error occurred while predicting cooling load", e)
