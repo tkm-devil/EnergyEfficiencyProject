@@ -20,7 +20,8 @@ with open(cooling_load_model_path, 'rb') as f:
     cooling_load_model = pickle.load(f)
 
 # Initialize the app
-app = Flask(__name__)
+application = Flask(__name__)
+app = application
 app.config['SECRET_KEY'] = 'a094eea3408c508ab02586c190d2ae03'
 app.template_folder = 'templates'
 
