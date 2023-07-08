@@ -36,7 +36,10 @@ class PredictionPipeline:
             column_names = ['Relative_Compactness', 'Surface_Area', 'Wall_Area', 'Roof_Area',
                             'Overall_Height', 'Orientation', 'Glazing_Area', 'Glazing_Area_Distribution']
             df.columns = column_names
-            return preprocessor.transform(df)
+            df_transformed = preprocessor.transform(df)
+            df_transformed = pd.DataFrame(df_transformed, columns=column_names)
+            logging.info("Applying preprocessor completed")
+            return df_transformed
         except Exception as e:
             logging.error("Error occurred while applying preprocessor")
             raise CustomException("Error occurred while applying preprocessor", e)
