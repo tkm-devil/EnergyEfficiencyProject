@@ -99,3 +99,11 @@ Contributions are welcome! If you have any ideas or improvements, please open an
 ## Authors
 
 * **Tilak Kishor Mishra** - *Initial work* - [tkm-devil](https://github.com/tkm-devil)
+
+## License
+
+This Project is licensed under MIT license - see the [license](https://opensource.org/license/mit/) for more details.
+
+## Acknowledgements
+
+* The UCI Machine Learning Repository for providing the dataset.
