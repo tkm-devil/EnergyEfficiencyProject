@@ -73,9 +73,10 @@ python application.py
 ## Usage
 
 1. Open your web browser and navigate to http://127.0.0.1:5000
-2. Fill in the form with the relevant architectural parameters of the building.
-3. Click the "Submit" button.
-4. The application will process the input and display the predicted heating load and cooling load values.
+2. Click the "Go to form" button
+3. Fill in the form with the relevant architectural parameters of the building.
+4. Click the "Submit" button.
+5. The application will process the input and display the predicted heating load and cooling load values.
 
 ## Deployment 
 
