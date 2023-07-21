@@ -80,7 +80,29 @@ python application.py
 
 ## Deployment 
 
-This section can be updated with instructions on how to deploy the application on a production server.
+The Energy Efficiency Prediction application has been successfully deployed to AWS App Runner, but before that, it went through a CI/CD pipeline, which involved the following steps:
+
+1. Containerization with Docker: The application was containerized using Docker, which allowed us to package the application and its dependencies into a single container image.
+
+2. CI/CD Setup: We set up a Continuous Integration/Continuous Deployment (CI/CD) pipeline using GitHub Actions. The CI/CD pipeline automatically triggered a build process whenever changes were pushed to the main branch of the GitHub repository.
+
+3. GitHub Actions Workflow: The CI/CD pipeline used a GitHub Actions workflow with different stages and jobs. The workflow included steps to build the Docker image, push the image to Amazon Elastic Container Registry (ECR), and deploy the application to AWS App Runner.
+
+4. Amazon Elastic Container Registry (ECR): We used ECR as a secure and scalable container registry service provided by AWS. The CI/CD pipeline pushed the Docker container image to ECR, making it available for deployment.
+
+5. AWS App Runner Setup: The AWS App Runner service was set up in the AWS Management Console. We specified the ECR container image as the source and provided the necessary configurations.
+
+6. Deployment Configuration: During the setup, we defined the deployment configuration, including the number of instances, CPU, and memory allocation.
+
+7. Start AWS App Runner: Once the configuration was completed, we started the AWS App Runner service, and the application was automatically deployed to the specified number of instances.
+
+8. Continuous Deployment: The CI/CD pipeline was configured to automatically update the application in AWS App Runner whenever a new image was pushed to the specified ECR repository. This enabled continuous deployment of the application.
+
+9. Monitoring and Scaling: AWS App Runner automatically handled the scaling of instances based on demand, ensuring that the application could handle varying levels of traffic.
+
+10. Accessibility: The deployed application is accessible via the public URL provided by AWS App Runner. Users can access the Energy Efficiency Prediction application through their web browsers.
+
+The CI/CD pipeline provided an automated and efficient way to deploy changes to the application while maintaining consistency and reliability. It eliminated manual deployment processes, reduced the risk of errors, and allowed for faster and more frequent updates.
 
 ## Built with
 
