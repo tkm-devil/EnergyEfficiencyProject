@@ -104,6 +104,8 @@ The Energy Efficiency Prediction application has been successfully deployed to A
 
 The CI/CD pipeline provided an automated and efficient way to deploy changes to the application while maintaining consistency and reliability. It eliminated manual deployment processes, reduced the risk of errors, and allowed for faster and more frequent updates.
 
+Currently I have Paused the application due to charges of aws app runner.
+
 ## Built with
 
 * [Flask](https://flask.palletsprojects.com/en/2.3.x/) - The web framework used
