@@ -50,5 +50,5 @@ jobs:
           # Build a Docker container and
           # push it to ACR for deployment.
           docker build -t energy-efficiency-app:$IMAGE_TAG .
-          docker tag energy-efficiency-app:$IMAGE_TAG myregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
-          docker push myregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
+          docker tag energy-efficiency-app:$IMAGE_TAG energyefficiencyregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
+          docker push energyefficiencyregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
