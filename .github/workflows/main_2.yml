@@ -1,0 +1,54 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  integration:
+    name: Continuous Integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Lint code
+        run: echo "Linting repository"
+        # You can add actual linting commands here to check code quality.
+
+      - name: Run unit tests
+        run: echo "Running unit tests"
+        # Add the commands to run your unit tests here.
+
+  build-and-push-acr-image:
+    name: Continuous Delivery
+    needs: integration
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: energyefficiencyregistry.azurecr.io  # Replace with your ACR login server
+          username: ${{ secrets.AZURE_ACR_USERNAME }}
+          password: ${{ secrets.AZURE_ACR_PASSWORD }}
+
+      - name: Build, tag, and push image to ACR
+        id: build-image
+        env:
+          IMAGE_TAG: latest
+        run: |
+          # Build a Docker container and
+          # push it to ACR for deployment.
+          docker build -t energy-efficiency-app:$IMAGE_TAG .
+          docker tag energy-efficiency-app:$IMAGE_TAG myregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
+          docker push myregistry.azurecr.io/energy-efficiency-app:$IMAGE_TAG
